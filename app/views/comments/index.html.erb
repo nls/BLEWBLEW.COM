@@ -1,0 +1,22 @@
+<h1>Mostrando comments</h1>
+
+<table style="width: 90%">
+  <tr>
+    <th>Nombre</th>
+    <th>Email</th>
+    <th>Post</th>
+  </tr>
+
+<% @comments.reverse.each do |comment| %>
+  <tr>
+    <td><%=h comment.name %></td>
+    <td><%=h comment.email %></td>
+    <td><%=link_to h(comment.post.title), "/posts/"+comment.post.id.to_s if comment.post %></td>
+    <td><%= link_to 'Show', comment %></td>
+    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+    <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

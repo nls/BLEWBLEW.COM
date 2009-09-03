@@ -1,0 +1,15 @@
+<div id="fullpost">
+<h1>Acerca de blewblew</h1>
+<div class="horizontalline" />
+Blewblew es un espacio en el que las mentes creativas y ociosas de diversos individuos hablan
+
+<h1>Personas</h1>
+<div class="horizontalline" />
+<% @authors.each do |author| %>
+	<p>
+	<h2><%= link_to author.name, "/about/"+author.id.to_s%></h2>
+	<%=author.tagline%>
+	</p>
+<%end%>
+<br /><br />
+</div>

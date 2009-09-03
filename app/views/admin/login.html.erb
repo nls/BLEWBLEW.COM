@@ -1,0 +1,12 @@
+<h1>Login or die ¬¬</h1>
+<% form_tag do %>
+<p>
+<label for="user">Usuario</label>
+<%= text_field_tag :user, params[:user] %>
+</p>
+<p>
+<label for="password">Password</label>
+<%= password_field_tag :password, params[:password] %>
+</p>
+<%= submit_tag "Login" %>
+<% end %>

@@ -1,0 +1,27 @@
+<h1>Feedback</h1>
+Aceptamos cualquier tipo de quejas, sugerencias, ofertas de trabajo, propuestas indecorosas, felicitaciones, &hearts;s, mentadas de madre, críticas obsesivas, fanmail etc. 
+<br /><br />Sin embargo, si deseas expresar tu opinión sobre un post en específico te recomendamos que lo hagas por medio de los comments.
+<% form_for(@feedback, :url => { :controller => 'feedback' }) do |f| %>
+	<p>
+	<%= f.label "Nombre" %><br />
+	<%= f.text_field :name %>
+	</p>
+	<p>
+	<%= f.label "Email" %><br />
+	<%= f.text_field :email %>
+	</p>
+	<p>
+	<%= f.label "Asunto" %><br />
+	<%= f.text_field :title %>
+	</p>
+	<p>
+	<%= f.label "Feedback" %><br />
+	<%= f.text_area :content, :cols => 70, :rows => 8 %>
+	</p>
+	<p>
+		<%= recaptcha_tags %>
+	</p>
+	  <p>
+	    <%= submit_tag "Enviar" %>
+	  </p>
+<% end %>

@@ -1,0 +1,30 @@
+<div style="float:left; width: 600px">
+	<div id="fullpost">
+		<h1><%= l @month_date, :format => :month_name %> <%= @year %></h1>
+		<%= will_paginate @posts %>
+		<div class="horizontalline"></div>
+		<%if !@posts[0] %>
+		  <h2>No hay posts u__u</h2>
+		<% else %>
+		  <% @posts.each do |post| %>
+		  <h2><%=link_to post.title, "/posts/"+post.id.to_s %></h2>
+		  <small>por <%=link_to post.author.name, "/about/"+post.author.id.to_s %>
+		  <br /><%=l post.created_at, :format => :long %> | <%=image_tag "/images/comment.gif"%>&times;<%=link_to post.comments.size, "/posts/"+post.id.to_s+"#comments"%></small>
+		  <br />
+		  <% end %>
+		<%end%>
+		<br />
+	</div>
+</div>
+<div style="float:right; width: 150px">
+	<p>
+		<strong>2009</strong>
+		<% i = Time.now.strftime('%m').to_i %>
+		<% while i >= 8 %>
+		  <br /><%=link_to l(Date.new(Time.now.year, i, 1), :format => :month_name), "/posts?month="+i.to_s+"&year=2009" %>
+		  <% i-=1 %>
+		<% end %>
+		<br /><br /><strong>Más viejos</strong>
+		<br /><%=link_to "Ye Olde Blewblew <br />(2007 - 2009)", "http://yeolde.blewblew.com" %>
+	</p>
+</div>

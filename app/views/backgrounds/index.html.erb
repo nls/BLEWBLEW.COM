@@ -1,0 +1,15 @@
+<div id="fullpost">
+<h1>Backgrounds</h1>
+<%=will_paginate @backgrounds %>
+<div class="horizontalline" />
+  <% @backgrounds.each do |background| %>
+    <h2><%=link_to background.title, background.image.url%></h2>
+    <small>por <%=link_to background.author.name, "/about/"+background.author.id.to_s%> (<%=l background.created_at, :format => :short%>)
+    <% if(session[:author] && session[:author].id == background.author.id) %>
+     | <%=link_to "Editar", "/backgrounds/"+background.id.to_s+"/edit" %> | <%= link_to 'Destruir', background, :confirm => ':O ¿Seguro(a)?', :method => :delete %>
+    <% end %>
+    </small>
+    <br /><%=background.content%>
+  <% end %>
+</div>
+<br />

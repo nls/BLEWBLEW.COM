@@ -1,0 +1,16 @@
+<div id="fullpost">
+<h1>Admin</h1>
+<div class="horizontalline" />
+<h2><%= session[:author].name %></h2>
+<%= link_to "<strong>[*]</strong> Editar perfil", "/authors/"+session[:author].id.to_s+"/edit" %>
+<h2>Posts</h2>
+<%= link_to "<strong>[*]</strong> Posts", '/about/'+session[:author].id.to_s+'#posts' %><br />
+<%= link_to "<strong>[^]</strong> Comments", '/comments'  %><br />
+<%= link_to "<strong>[+]</strong> Nuevo post", '/posts/new' %>
+<h2>Backgrounds</h2>
+<%= link_to "<strong>[*]</strong> Backgrounds", '/backgrounds' %><br />
+<%= link_to "<strong>[+]</strong> Nuevo background", '/backgrounds/new' %>
+<h2>Feedback</h2>
+<%= link_to "<strong>[*]</strong> Ver feedback", '/feedbacks' %>
+<br /><br />
+</div>

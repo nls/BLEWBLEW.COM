@@ -1,0 +1,66 @@
+				<div id="fullpost">
+					<h1><%=@post.title%></h1>
+					por <%=link_to @post.author.name, "/about/"+@post.author.id.to_s %> (<%=l @post.created_at, :format => :long%>) | <%=image_tag "/images/comment.gif"%>&times;<%=link_to @post.comments.size, "#comments"%>
+					<div class="horizontalline" />
+					<div id="postcontent">
+						<p>
+						<% if @post.image_file_name %>
+						<%=link_to(image_tag(@post.image.url(:inpost), :style=>'float:left; border:none; margin-right: 10px; margin-bottom:10px'), @post.image.url)%>
+						<% end %>
+						<%=@post.content%>
+						<div class="clear"></div>
+						</p>
+						<div class="horizontalline" />
+						<a name="comments"></a>
+						<h2><%=@post.comments.size%> Comment<%="s" if @post.comments.size!=1%></h2>
+						<%= will_paginate @comments %>
+						<% @comments.each do |comment| %>
+						<div id="comments">
+							<div class="comment">
+								<div class="author">
+									<%=image_tag "http://2.gravatar.com/avatar/"+Digest::MD5.hexdigest(comment.email)+".jpg?s=48&d=http://l.yimg.com/g/images/buddyicon.jpg", :style => "vertical-align: top; float: left; margin-right: 5px"%>
+									<h3><% if comment.website %>
+													<%= link_to h(comment.name), comment.website %>
+												<% else %>
+													<%= h comment.name %>
+												<%end%>
+											</h3>
+									<small><%=l comment.created_at, :format => :short%></small>
+									<div class="clear"></div>
+								</div>
+								<br />
+								<div class="content">
+								<%= h comment.content%>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+						<% end %>
+						<h2>Postear nuevo comment</h2>
+						
+						<% form_tag '/comments' do %>
+						  <p>
+						    <%= label_tag "Nombre" %><br />
+						    <%= text_field_tag "name" %>
+						  </p>
+						  <p>
+						    <%= label_tag "Email" %><br />
+						    <%= text_field_tag "email" %>
+						  </p>
+						  <p>
+							<%= label_tag "Website" %><br />
+							<%= text_field_tag "website" %>
+						  </p>
+						  <p>
+						    <%= label_tag "Comment" %><br />
+						    <%= text_area_tag "content", nil, :rows => 10, :cols => 70 %>
+						  </p>
+						  <p>
+							<%= recaptcha_tags %>
+						  </p>
+							<%= hidden_field_tag "post_id", @post.id%>
+						  <p>
+						    <%= submit_tag "Postear" %>
+						  </p>
+						<% end %>
+					</div>

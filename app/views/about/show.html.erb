@@ -1,0 +1,45 @@
+<div id="fullpost">
+	<h1><%=@author.name%></h1>
+	<%=@author.tagline%>
+	<div class="horizontalline" />
+	<p>
+	<% if @author.image_file_name %>
+		<%=link_to image_tag(@author.image.url(:thumb), :style=>'float:left; margin-right: 10px; border:none'),
+		 			@author.image.url %>
+	<% end %>
+	<% if !@author.description.empty? %>
+		<%=@author.description%>
+	<% else %>
+		<i>Mi flojera me ha impedido editar mi profile ;)</i>
+	<% end %>
+	</p>
+	<div class="clear"></div>
+	<br />
+	<div class="horizontalline" />
+	<h2><%=@visible_posts.size%> Post<%="s" if @visible_posts.size!=1%><h2>
+	<%= will_paginate @visible_posts %>
+	<% @visible_posts.reverse_each do |post| %>
+		<h2><%=link_to post.title, "/posts/"+post.id.to_s %></h2>
+		<small><%=l post.created_at, :format => :long %> | <%=image_tag "/images/comment.gif"%>&times;<%=post.comments.size%>
+		<% if session[:author] && session[:author].id == post.author.id %>
+		 | <%= link_to 'Editar', edit_post_path(post) %> | <%= link_to 'Destruir', post, :confirm => ':O ¿Seguro(a)?', :method => :delete %>
+		<% end %>
+		</small>
+		<br />
+	<% end %>
+	<%if @invisible_posts && !@invisible_posts.empty? %>
+	  <br />
+	  <h2>Posts invisibles</h2>
+	  <%= will_paginate @invisible_posts %>
+	  <% @invisible_posts.reverse_each do |post| %>
+		  <h2><%=link_to post.title, "/posts/"+post.id.to_s %></h2>
+		  <small><%=l post.created_at, :format => :long %> | <%=image_tag "/images/comment.gif"%>&times;<%=post.comments.size%>
+		  <% if session[:author] && session[:author].id == post.author.id %>
+		   | <%= link_to 'Hacer visible', "/posts/unhide/"+post.id.to_s %> | <%= link_to 'Editar', edit_post_path(post) %> | <%= link_to 'Destruir', post, :confirm => ':O ¿Seguro(a)?', :method => :delete %>
+		  <% end %>
+		  </small>
+		  <br />
+	  <% end %>
+	<%end %>
+</div>
+<br />

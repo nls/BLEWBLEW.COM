@@ -1,0 +1,18 @@
+<p>
+  <b>Title:</b>
+  <%=h @background.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%=h @background.content %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%=h @background.author_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_background_path(@background) %> |
+<%= link_to 'Back', backgrounds_path %>

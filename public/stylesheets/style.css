@@ -1,0 +1,136 @@
+body {
+	font-family: "Lucida Grande", Verdana, sans;
+	font-size: 0.77em;
+	margin: 10px;
+}
+
+#container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+a {
+	text-decoration: none;
+	color:#747474;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#main {
+	width: 810px;
+	padding: 10px;
+	background: #fafafa;
+}
+
+#main h1 {
+	font-weight: normal;
+}
+
+/*
+#main h2 {
+	font-weight: normal;
+}
+*/
+
+#main strong a {
+	color: #000000;
+}
+
+.headline img {
+	border: none;
+}
+
+.headline {
+	border: solid 1px #ddd;
+}
+
+.headline .bigtitle {
+	background:#eee;
+	color:#222;
+	padding: 10px;
+	border-top: solid 1px #ddd;
+}
+
+.headline .smalltitle {
+	background:#eee;
+	color:#222;
+	padding: 5px;
+	border-top: solid 1px #ddd;
+}
+
+.bigtitle strong {
+	font-size:25px;
+}
+
+.headline .bigtitle img {
+	vertical-align:middle;
+}
+
+.headline .smalltitle img {
+	vertical-align:middle;
+}
+
+#fullpost img {
+	vertical-align: middle;
+}
+
+#fullpost h1 {
+	margin-bottom: 0;
+}
+
+#fullpost h1 a {
+	color: #000000;
+}
+
+#fullpost h2 {
+	margin-bottom: 0;
+}
+
+#fullpost h2 a {
+	color: #000000;
+}
+
+#postcontent {
+	text-align: justify;
+}
+
+.horizontalline {
+	margin-top: 3px;
+	border-top: solid 1px #ddd;
+}
+
+#comments {
+	padding: 10px;
+	padding-top: 5px;
+}
+
+.comment {
+	margin-top: 5px;
+}
+/*
+.comment .author {
+	text-align: left;
+	width: 85px;
+}
+*/
+
+.comment .content {
+	float: left;
+	width: 80%;
+}
+
+.profile img {
+	float: left;
+	margin-right: 10px;
+}
+
+.profile .text {
+	padding: 10px;
+	padding-top: 0;
+}
+
+.clear {
+	clear: both;
+}

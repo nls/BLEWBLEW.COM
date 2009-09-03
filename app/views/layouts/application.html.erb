@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>BLEWBLEW.COM: <% if @post %>
+                        <%=@post.title%>
+                       <%else%>
+                        <%= controller.controller_name %>
+                       <%end%></title>
+  <%= stylesheet_link_tag 'style' %>
+  <%= include_yui_editor_if_used %>
+</head>
+<% @background = get_background %>
+<body style="background: url('<%=@background.image.url %>')">
+	<span style="float: right; background: #fafafa; padding: 3px"><%=link_to @background.title, "/backgrounds"%></span>
+	<div id="container">
+		<%= image_tag "/images/blewblewlogo.png" %>
+		<div id="main">
+			<%=link_to "Home", "/"%> | <%=link_to "Posts", "/posts"%> | <%=link_to "Acerca de", "/about"%> | <%=link_to "Feedback", "/feedback"%> 
+			<% if session[:author] %>
+			   | <%=link_to "Admin", "/admin" %> | Sesión iniciada como <%=link_to session[:author].name, "/about/"+session[:author].id.to_s %> <%=link_to "logout", "/admin/logout" %>
+			<% end %>
+
+<p style="color: green"><%= flash[:notice] %></p>
+<p style="color: red"><%= flash[:error] %></p>
+
+<%= yield %>
+
+				<div class="clear"></div>
+				<div id="footer">Copyright &copy; The multicolored blewblew crew</div>
+			</div>
+		</div>
+	</body>
+</html>

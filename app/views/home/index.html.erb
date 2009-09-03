@@ -1,0 +1,38 @@
+<p class="headlines">
+	<% if @headlines[0] %>
+	<div class="headline" style="float:left">
+		<%=link_to image_tag(@headlines[0].image.url(:topheadline), :height =>200, :width=>450), "/posts/"+@headlines[0].id.to_s %>
+		<div class="bigtitle">
+			<strong><%=link_to @headlines[0].title, "/posts/"+@headlines[0].id.to_s %></strong>
+			<br /><small>por <%=link_to @headlines[0].author.name, "/about/"+@headlines[0].author.id.to_s %> (hace <%=time_ago_in_words @headlines[0].created_at %>) | <%=image_tag "/images/comment.gif"%>&times;<%=link_to @headlines[0].comments.size, "/posts/"+@headlines[0].id.to_s+"#comments"%></small>
+		</div>
+	</div>
+	<% end %>
+	<% if @headlines[1] %>
+	<div class="headline" style="float:right; margin-bottom: 7px">
+		<%=link_to image_tag(@headlines[1].image.url(:subheadline), :height =>90, :width=>350), "/posts/"+@headlines[1].id.to_s %>
+		<div class="smalltitle">
+			<strong><%=link_to @headlines[1].title, "/posts/"+@headlines[1].id.to_s %></strong> 
+			<br/><small>por <%=link_to @headlines[1].author.name, "/about/"+@headlines[1].author.id.to_s %> (hace <%=time_ago_in_words @headlines[1].created_at, true %>) | <%=image_tag "/images/comment.gif"%>&times;<%=link_to @headlines[1].comments.size, "/posts/"+@headlines[1].id.to_s+"#comments"%></small>
+		</div>
+	</div>
+	<% end; %>
+	<% if @headlines[2] %>
+	<div class="headline" style="float:right">
+		<%=link_to image_tag(@headlines[2].image.url(:subheadline), :height =>90, :width=>350), "/posts/"+@headlines[2].id.to_s %>
+		<div class="smalltitle">
+			<strong><%=link_to @headlines[2].title, "/posts/"+@headlines[2].id.to_s %></strong> 
+			<br/><small>por <%=link_to @headlines[2].author.name, "/about/"+@headlines[2].author.id.to_s %> (hace <%=time_ago_in_words @headlines[2].created_at, true %>) | <%=image_tag "/images/comment.gif"%>&times;<%=link_to @headlines[2].comments.size, "/posts/"+@headlines[2].id.to_s+"#comments"%></small>
+		</div>
+	</div>
+	<% end %>
+</p>
+<div class="clear"></div>
+<% if @recent_posts.size > 0 %>
+<h2>Otros posts recientes</h2>
+	<ul style="float:left; margin-top: 0">
+	<% @recent_posts.each do |post| %>
+		<li><%=link_to post.title, "/posts/"+post.id.to_s, :style=>'color:#000000'%><small> por <%=link_to post.author.name, "/about/"+post.author.id.to_s%> (hace <%=time_ago_in_words post.created_at, true %>)</small></li>
+	<% end %>
+	</ul>
+<% end %>

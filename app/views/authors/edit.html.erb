@@ -1,0 +1,35 @@
+<h1>Editando persona</h1>
+
+<% form_for(@author, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label "Usuario" %><br />
+    <%= f.text_field :user %>
+  </p>
+  <p>
+    <%= f.label :password%><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label "Nombre" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "Imagen" %><br />
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.label :tagline %><br />
+    <%= f.text_field :tagline %>
+  </p>
+  <p>
+    <%= f.label "Descripción" %><br />
+    <%= f.text_area :description, :rows => 13 %>
+  </p>
+  <p>
+    <%= f.submit 'Actualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @author %> |
+<%= link_to 'Back', authors_path %>
